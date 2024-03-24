@@ -11,7 +11,6 @@ function App() {
     setCurrentFriendOpen(() => id);
   }
 
-  console.log(currentFriendOpen);
   function handleFriendFormOpen() {
     setIsFFOpen((prev) => !prev);
   }
