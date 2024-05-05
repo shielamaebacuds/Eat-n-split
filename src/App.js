@@ -17,16 +17,19 @@ function App() {
 
   const [FRIENDS, setFriends] = useState([
     {
+      ID: 0,
       NAME: "Sarah",
       OWE: 0, //YOUR OWE TO YOUR FRIEND. If positive, you owe the friend. Otherwise, other way around.
       IMAGE: "https://i.pravatar.cc/150?img=1",
     },
     {
+      ID: 1,
       NAME: "Anthony",
       OWE: 0,
       IMAGE: "https://i.pravatar.cc/150?img=2",
     },
     {
+      ID: 2,
       NAME: "Mark",
       OWE: 0,
       IMAGE: "https://i.pravatar.cc/150?img=3",
@@ -95,6 +98,7 @@ function App() {
                 friendToSplitID={currentFriendOpen}
                 friends={FRIENDS}
                 onSplitBill={handleOwe}
+                key={FRIENDS.at(currentFriendOpen).ID}
               />
             </div>
           ) : null
@@ -195,7 +199,7 @@ function FriendForm({ onClose, friends, onAddFriend }) {
           <label>👫 Friend name </label>
           <input
             type="text"
-            value={friendName || " "}
+            value={friendName || ""}
             required
             onChange={handleNameInput}
           />
@@ -204,7 +208,7 @@ function FriendForm({ onClose, friends, onAddFriend }) {
           <label>🖼 Image URL </label>
           <input
             type="text"
-            value={imgURL || " "}
+            value={imgURL || ""}
             onChange={handleImgInput}
             required
           />
@@ -226,7 +230,7 @@ function SplitBill({ friendToSplitID, friends, onSplitBill }) {
   const [expense, setExpense] = useState();
   const [payer, setPayer] = useState("You");
   const friend = friends[friendToSplitID];
-  const friendExpense = billValue - expense || 0;
+  const friendExpense = expense? billValue - expense : billValue ;
 
   function handleSplitBill(e) {
     e.preventDefault();
